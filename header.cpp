@@ -1,7 +1,7 @@
 // #define _GLIBCXX_DEBUG
 #include <bits/stdc++.h>
 using namespace std;
-#include <atcoder/modint>
+#include <atcoder/all>
 
 // Faster input/output
 struct Init{Init(){ios::sync_with_stdio(0);cin.tie(0);cout<<fixed<<setprecision(15);}}_atcoder_init;
