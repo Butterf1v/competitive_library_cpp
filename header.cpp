@@ -47,6 +47,23 @@ template<typename T>istream&operator>>(istream&is,vector<T>&v){for(T&in:v)is>>in
 ostream&operator<<(ostream&os,mint a){os<<a.val();return os;}
 istream&operator>>(istream&is,mint&a){int x;is>>x;a=mint(x);return is;}
 
+// --- Fixed-point combinator for recursive lambdas ---
+template <typename F>
+class FixPoint final : private F {
+public:
+    template <typename G>
+    explicit constexpr FixPoint(G&& g) noexcept : F{std::forward<G>(g)} {}
+
+    template <typename... Args>
+    constexpr decltype(auto) operator()(Args&&... args) const {
+        return F::operator()(*this, std::forward<Args>(args)...);
+    }
+};
+
+// C++17 Class Template Argument Deduction (CTAD) guide
+template <typename F>
+FixPoint(F&&) -> FixPoint<std::decay_t<F>>;
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
