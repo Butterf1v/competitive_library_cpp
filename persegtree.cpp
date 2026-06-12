@@ -1,7 +1,6 @@
 #include <vector>
 
-template <class S, S (*op)(S, S), S (*e)()>
-struct persegtree {
+template <class S, S (*op)(S, S), S (*e)()> struct persegtree {
 private:
   struct Node {
     S val;
